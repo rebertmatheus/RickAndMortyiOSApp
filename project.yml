@@ -1,0 +1,10 @@
+name: RickAndMorty
+options:
+  bundleIdPrefix: br.com.trebert
+configurations:
+  Debug:
+    buildSettings:
+      SWIFT_OPTIMIZATION_LEVEL: '-Onone'
+  Release:
+    buildSettings:
+      SWIFT_OPTIMIZATION_LEVEL: '-Owholemodule'
