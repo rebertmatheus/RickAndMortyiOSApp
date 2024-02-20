@@ -12,6 +12,8 @@ final class RMCharacterViewController: UIViewController, RMTabBarViewControllerP
     let rmTitle: String = "Characters"
     let rmBarIcon: String = "person"
     let rmTag: Int = 1
+    
+    private let characterListView = RMCharacterListView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,21 +21,16 @@ final class RMCharacterViewController: UIViewController, RMTabBarViewControllerP
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .automatic
         title = rmTitle
-        
-        let request = RMRequest(
-            endpoint: .character,
-            queryParameters: [
-                URLQueryItem(name: "name", value: "rick"),
-                URLQueryItem(name: "status", value: "alive")
-            ]
-        )
-        
-        print(request.url)
-        
-        RMService.shared.execute(request, expecting: RMCharacter.self) { result in
-            switch result {
-            case .success(<#T##RMCharacter#>)
-        }
-        }
+        setUpView()
+    }
+    
+    private func setUpView() {
+        view.addSubview(characterListView)
+        NSLayoutConstraint.activate([
+            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
 }
